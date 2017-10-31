@@ -1,7 +1,35 @@
-const stack = function() {
-  init: {
+// Stack implementation provided by: https://initjs.org/data-structure-stack-in-javascript-714f45dbf889
 
-  }
+// This Stack is written using the pseudoclassical pattern
+
+// Creates a stack
+const Stack = function() {
+    this.count = 0;
+    this.storage = {};
 }
 
-module.exports = stack;
+// Adds a value onto the end of the stack
+Stack.prototype.push = function(value) {
+    this.storage[this.count] = value;
+    this.count++;
+}
+
+// Removes and returns the value at the end of the stack
+Stack.prototype.pop = function() {
+    // Check to see if the stack is empty
+    if (this.count === 0) {
+        return undefined;
+    }
+
+    this.count--;
+    var result = this.storage[this.count];
+    delete this.storage[this.count];
+    return result;
+}
+
+// Returns the length of the stack
+Stack.prototype.size = function() {
+    return this.count;
+}
+
+module.exports = Stack;
